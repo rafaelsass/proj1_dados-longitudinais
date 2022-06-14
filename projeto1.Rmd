@@ -1,0 +1,26 @@
+---
+title: "projeto1"
+author: "Rafael Arocho"
+date: "11/06/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(readxl)
+dados <- read_excel("proj1/rats01.xlsx")
+```
+
+## Introdução
+
+Primeiro projeto de análise de dados longitudinais. Disciplina de tópicos em estatística TTC professor: Enrico A. Colosimo\
+
+## Descrição
+50 ratos foram divididos em três grupos (controle, dose baixa e dose alta) e foram avaliados em 7 ocasiões (50, 60, 70, 80, 90, 100 e 110 dias). A resposta medida foi a distância cranio-facial no raio-x (em pixels) e os objetivos são: (1) comparar os grupos e (2) avaliar as mudanças temporais.
+
+```{r}
+dados <- dados %>% 
+  mutate(across(.cols=c(TIME,GROUP,SUBJECT),.fns=~factor(.,ordered = T)))
+```
+
